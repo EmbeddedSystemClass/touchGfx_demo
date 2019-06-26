@@ -96,8 +96,8 @@ cubie_touchgfx.list \
 all: cubie_touchgfx.elf secondary-outputs
 
 # Tool invocations
-cubie_touchgfx.elf: $(OBJS) $(USER_OBJS) G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\STM32F746NGHX_FLASH.ld
-	arm-none-eabi-g++ -o "cubie_touchgfx.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cubie_touchgfx.map" -Wl,--gc-sections -static -L"G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\Middlewares\ST\TouchGFX\touchgfx\lib\core\cortex_m7\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+cubie_touchgfx.elf: $(OBJS) $(USER_OBJS) F:\Repositorries\touchGfx_demo\STM32F746NGHX_FLASH.ld
+	arm-none-eabi-g++ -o "cubie_touchgfx.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"F:\Repositorries\touchGfx_demo\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cubie_touchgfx.map" -Wl,--gc-sections -static -L"F:\Repositorries\touchGfx_demo\Middlewares\ST\TouchGFX\touchgfx\lib\core\cortex_m7\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
