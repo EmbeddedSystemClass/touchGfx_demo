@@ -8,8 +8,34 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TouchGFX/gui/src/screen2_screen/subdir.mk
+-include TouchGFX/gui/src/screen1_screen/subdir.mk
+-include TouchGFX/gui/src/model/subdir.mk
+-include TouchGFX/gui/src/common/subdir.mk
+-include TouchGFX/generated/texts/src/subdir.mk
+-include TouchGFX/generated/images/src/__designer/subdir.mk
+-include TouchGFX/generated/images/src/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen2_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen1_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/generated/fonts/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/touchgfx/framework/source/platform/hal/simulator/sdl2/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/touchgfx/framework/source/platform/driver/touch/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/simulator/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/screen2_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/screen1_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/model/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/common/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/texts/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/images/src/__designer/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/images/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/gui_generated/src/screen2_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/gui_generated/src/screen1_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/subdir.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
+-include STM32746G-Discovery/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/subdir.mk
@@ -23,11 +49,12 @@ RM := rm -rf
 -include Middlewares/ST/TouchGFX/touchgfx/framework/source/touchgfx/containers/progress_indicators/subdir.mk
 -include Middlewares/ST/TouchGFX/touchgfx/framework/source/touchgfx/containers/clock/subdir.mk
 -include Middlewares/ST/TouchGFX/touchgfx/framework/source/touchgfx/containers/subdir.mk
--include Middlewares/ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/subdir.mk
 -include Middlewares/ST/TouchGFX/touchgfx/framework/source/platform/driver/touch/subdir.mk
+-include Middlewares/ST/TouchGFX/touchgfx/framework/include/platform/driver/touch/subdir.mk
 -include Middlewares/ST/STM32_USB_Host_Library/Core/Src/subdir.mk
 -include Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Src/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
+-include Components/ft5336/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -56,21 +83,21 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-stm32f746g-disco_cubeide.elf \
+cubie_touchgfx.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-stm32f746g-disco_cubeide.list \
+cubie_touchgfx.list \
 
 
 # All Target
-all: stm32f746g-disco_cubeide.elf secondary-outputs
+all: cubie_touchgfx.elf secondary-outputs
 
 # Tool invocations
-stm32f746g-disco_cubeide.elf: $(OBJS) $(USER_OBJS) G:\Workspaces\STM32CubeIDE\workspace_1.0.0\stm32f746g-disco_cubeide\STM32F746NGHX_FLASH.ld
-	arm-none-eabi-g++ -o "stm32f746g-disco_cubeide.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"G:\Workspaces\STM32CubeIDE\workspace_1.0.0\stm32f746g-disco_cubeide\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32f746g-disco_cubeide.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+cubie_touchgfx.elf: $(OBJS) $(USER_OBJS) G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\STM32F746NGHX_FLASH.ld
+	arm-none-eabi-g++ -o "cubie_touchgfx.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cubie_touchgfx.map" -Wl,--gc-sections -static -L"G:\Workspaces\STM32CubeIDE\workspace_1.0.0\cubie_touchgfx\Middlewares\ST\TouchGFX\touchgfx\lib\core\cortex_m7\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -79,8 +106,8 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-stm32f746g-disco_cubeide.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "stm32f746g-disco_cubeide.list"
+cubie_touchgfx.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "cubie_touchgfx.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
